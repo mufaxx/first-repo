@@ -1,0 +1,28 @@
+pwd (present working dir)
+mkdir <dir name>
+cd <dir name>      //change dir
+git config --global user.name "usr name"
+git congig --global user.email "usr@gmail.com"
+git config --list    //to list git config
+git init     //to initialize new git repo
+
+touch <file name.extenson>   //create new file
+notepad <file name>      //if its text file or open dirctly from path -> edit -> save
+git status   //to check status
+git add       //to add changes (let the git know the changes)
+{check the status again after added the change (name should be in green)}
+git commit -m "commit message"    //to commit the changes to the repo
+{check the status again if you want}
+git log    // to see the commits
+
+----repeat the process for next file----
+
+
+pushing repo from client server
+
+git remote add origin <add link>   //from github
+git remote --v   //to check if its added correctly
+git push origin mater   //origin=repoaddress, master=current branch
+
+github login page will be opened
+refresh page on github(commit will be visible)
