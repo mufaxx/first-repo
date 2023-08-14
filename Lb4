@@ -1,0 +1,60 @@
+create table dependent
+
+(Essn int(10),
+
+Dependent_name varchar(20) Not null,
+
+Relation varchar(20) Not Null,
+
+Foreign Key(Essn) references Employee(Ssn),
+
+Primary Key(Essn, Dependent_name));
+
+ 
+
+insert into dependent values(12,'James','Son');
+
+insert into dependent values(15,'Sarah','Wife');
+
+insert into dependent values(16,'Shine','Wife');
+
+insert into dependent values(12,'Henry','Husband');
+
+insert into dependent values(12,'Lily','Daughter');
+
+insert into dependent values(16,'Rose','Daughter');
+
+insert into dependent values(11, 'John','Son');
+
+
+
+1.	select sum(salary) as total_salary, avg(salary) as average_salary, max(salary) as maximum_salary, min(salary) as minimum_salary from employee;
+
+2.	select sum(salary), avg(salary) from employee inner join department on employee.dnum=department.dnum and dname='Research';
+
+3.	select dname,count(*) from employee as E inner join department as D on E.dnum= D.dnum group by(D.dnum);
+
+4.	select fname, lname, count(*) from employee inner join dependent on Ssn=Essn group by fname, lname having count(*)>=2;
+
+or
+
+select fname, lname from employee where (select count(*) from dependent where Essn=Ssn)>2;
+
+5.	select Dnum, count(*), avg(salary) from employee group by Dnum;
+
+6.	select P.Pnum, Pname, count(*) as No_of_employees from Project as P inner join Works_on as W on P.Pnum=W.Pnum group by W.Pnum, Pname;
+
+7.	select P.Pnum, Pname, count(*) as No_of_employees from Project as P inner join Works_on as W on P.Pnum=W.Pnum group by W.Pnum, Pname having count(*)>2;
+
+8.	select P.Pnum, Pname, count(*) as No_of_employees from Project as P inner join Works_on as W on P.Pnum=W.Pnum and dnum=102 group by W.Pnum, Pname;
+
+9.	select fname, lname from employee where exists (select * from dependent where Essn = Ssn and Fname=Dependent_name);
+
+10.	select fname, lname from employee where not exists (select * from dependent where Essn = Ssn);
+
+11.	select fname, lname from employee where salary> (select avg(salary) from  employee);
+
+12.	create view Salary_greater_than_average as select fname, lname from employee where salary> (select avg(salary) from  employee);
+
+13.	create or replace view Salary_greater_than_average as select fname, lname, salary from employee where salary> (select avg(salary) from  employee);
+
